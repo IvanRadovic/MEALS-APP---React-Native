@@ -13,7 +13,19 @@ const MealsOverviewScreen = ({ route }) => {
 
     /* -- Show MealItem data */
     const renderMealItem = (itemData) => {
-      return <MealItem title={itemData.item.title} />
+        const item = itemData.item;
+
+        const mealItemProps = {
+            title:item.title,
+            imageUrl:item.imageUrl,
+            affordability: item.affordability,
+            duration:item.duration,
+            complexity:item.complexity
+        }
+
+      return (
+            <MealItem {...mealItemProps}/>
+        )
     }
 
     return ( 
@@ -22,7 +34,6 @@ const MealsOverviewScreen = ({ route }) => {
                 data={displayedMeals} 
                 keyExtractor={(item) => item.id}
                 renderItem={renderMealItem}
-                numColumns={2}
             />
         </View>
      );
